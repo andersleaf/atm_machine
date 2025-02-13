@@ -7,41 +7,36 @@ namespace atm_machine
     class BankAccount
     {
         static int balance = 0;
-        static string username;
+        public string username;
         public int amount;
         public int total;
 
-        public static int Options()
+        public void Options()
         {
-            Console.WriteLine("What would you like to do today?");
+            Console.WriteLine($"What would you like to do today {username}? ");
             Console.WriteLine("1. Deposit money");
             Console.WriteLine("2. Withdraw money");
             Console.WriteLine("3. Check your balance");
             string choice = Console.ReadLine();
-            Convert.ToInt32(choice);
             if (choice == "1")
             {
-                BankAccount.Deposit();
+                Console.Write("Please enter the amount of money you wish to deposit: ");
+                int amount = Convert.ToInt32(Console.ReadLine());
+                Deposit(amount);
             }
-
         }
         public int Balance(int total, int amount)
         {
             return total; // Stores the balance of the bank account
         }
-        public static void Get_Balance(int total)
+        public void Get_Balance(int total)
         {
             Console.WriteLine(total); //Displays the balance of the bank account to the user
         }
-        public static string Users()
+        public void Create()
         {
-
-        }
-        public string Create(string username)
-        {
-            Console.Write("Welcome, please type the name of your new bank account:");
+            Console.Write("Welcome, please type the name of your new bank account: ");
             username = Console.ReadLine();
-            return username;
         }
         public string Name(string username)
         {
@@ -50,10 +45,10 @@ namespace atm_machine
         }
         public int Deposit(int amount)
         {
-            Console.Write("Please enter the amount of money you wish to deposit: ");
-            string a = Console.ReadLine();
-            Convert.ToInt32(a);
             total = amount + total;
+            Console.WriteLine("Your new total is " + total);
+            return total;
+
         }
         public int Withdraw(int amount)
         {
@@ -64,11 +59,13 @@ namespace atm_machine
     }
     class Program
     {
-        static void Main(string[] args) 
+        static void Main(string[] args)
         {
+            BankAccount account = new BankAccount();
             int balance = 0;
-            string username;
-            BankAccount.Create();
+            account.Create();
+            account.Options();
         }
     }
 }
+
